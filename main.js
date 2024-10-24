@@ -14,7 +14,16 @@ function updateTotalPrice() {
     const totalPrice = productPrice * quantity;
     totalPriceElement.textContent = totalPrice.toFixed(2); //use toFixed to get 2 decimal places
 };
-// use event listeners to update the price when the product or quantity change
+// Use event listeners to update the price when the product or quantity change
 productSelector.addEventListener('change', updateTotalPrice);
 quantityInput.addEventListener('input', updateTotalPrice);
 
+
+// Task 4: Handle order submission
+placeOrderButton.addEventListener('click', function() {
+    const selectedProduct = productSelector.options[productSelector.selectedIndex].text;
+    const quantity = quantityInput.value;
+    const totalPrice = totalPriceElement.textContent;
+    // When they place an order by clicking the button, give them a confirmation paragraph
+    orderSummary.textContent = `You ordered ${quantity} of ${selectedProduct}. Total price: $${totalPrice}`;
+});
